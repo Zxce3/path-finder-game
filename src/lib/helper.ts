@@ -82,8 +82,8 @@ export const app = {
       sessionStorage.setItem("results", "0");
     } else {
       const currentResults = sessionStorage.getItem("results");
-      const newscore = currentResults ? parseInt(currentResults) + points : points;
-      sessionStorage.setItem("results", newscore.toString());
+      const newScore = currentResults ? parseInt(currentResults) + points : points;
+      sessionStorage.setItem("results", newScore.toString());
     }
   },
   launchScreen(lastScore: number, title: string, description: string, btnText: string) {
@@ -120,7 +120,11 @@ export const app = {
   resetTimer: () => {},
   playSoundEffect(sound: string) {
     const audio = new Audio(sound);
-    audio.play();
+    audio.play().catch(error => {
+      if (error.name !== 'AbortError') {
+        console.error('Error playing sound:', error);
+      }
+    });
   },
   start(dotsNum: number) {
     this.resetTimer();
@@ -190,18 +194,20 @@ export const app = {
       svg.innerHTML = "";
     }
 
+    const finalScore = sessionStorage.getItem("results") || "0";
+
     if (win) {
       app.launchScreen(
         app.score.number,
         "Well done!",
-        "Your score is: " + sessionStorage.getItem("results") + ' The next level will be harder.',
+        `Your score is: ${finalScore}. The next level will be harder.`,
         "PLAY NEXT LEVEL"
       );
     } else {
       app.launchScreen(
         0,
         "Game over!",
-        "Your final score is: " + sessionStorage.getItem("results"),
+        `Your final score is: ${finalScore}`,
         "PLAY AGAIN"
       );
       app.results("reset");
