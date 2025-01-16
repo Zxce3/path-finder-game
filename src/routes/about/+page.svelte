@@ -1,5 +1,6 @@
 <script lang="ts">
 	// You can add any necessary imports here
+	let currentYear: number = new Date().getFullYear();
 </script>
 
 <svelte:head>
@@ -7,7 +8,7 @@
 </svelte:head>
 
 <div id="about">
-	<a href="/">Go back</a>
+	<a href="/">Go Back</a>
 	<h1>About Path Finder</h1>
 	<p>
 		Path Finder is a fun and challenging game where you need to find the nearest yellow dot as
@@ -28,4 +29,6 @@
 	</p>
 	<p>Developed by <a href="https://github.com/zxce3" target="_blank">zxce3</a>.</p>
 	<p>The source code for this project can be accessed at <a href="https://github.com/Zxce3/path-finder-game/" target="_blank">https://github.com/Zxce3/path-finder-game/</a>.</p>
+	<p>Proudly hosted on <a href="https://www.netlify.com/" target="_blank">Netlify</a>.</p>
+	<p>&copy; {currentYear} Path Finder. All rights reserved.</p>
 </div>
