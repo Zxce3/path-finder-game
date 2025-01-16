@@ -56,6 +56,10 @@ export class Dot {
     const thisCx = dots.list[thisId].cx;
     const thisCy = dots.list[thisId].cy;
 
+    if (thisId === dots.selected.id) {
+      return; // Prevent game over when clicking the same dot
+    }
+
     const distances: [number, number][] = [];
     for (let i = 0; i < dots.num; i++) {
       distances[i] = [i, getDistance(dots.selected, dots.list[i])];
