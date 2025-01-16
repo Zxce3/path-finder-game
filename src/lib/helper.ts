@@ -39,6 +39,7 @@ export function initializeDOMElements() {
   totalDist = document.getElementById("distance");
   app.preline = new Line(0, 0, 200, 200);
   app.preline.setAttr("id", "preline");
+  app.score.el = document.getElementById("score"); // Initialize score element
 }
 
 export const lines = {
@@ -108,7 +109,11 @@ export const app = {
     }
   },
   preline: new Line(0, 0, 200, 200),
+  startTimer: () => {},
+  resetTimer: () => {},
   start(dotsNum: number) {
+    this.resetTimer();
+    this.startTimer();
     dots.num = dotsNum;
 
     for (let i = 0; i < dots.num; i++) {
@@ -149,6 +154,7 @@ export const app = {
     dots.list[dots.start].setAttr("data-selected", "true");
   },
   end(win: boolean) {
+    this.resetTimer();
     if (win) {
       app.level += 4;
       app.results(app.score.number);
