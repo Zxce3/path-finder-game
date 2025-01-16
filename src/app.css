@@ -11,14 +11,14 @@
     0%    {stroke-dashoffset:0}
     100%    {stroke-dashoffset:100%}
 }
-
 body {
-    cursor:crosshair;
+    cursor: crosshair;
     background-color: black;
-    background-image: linear-gradient(to top, rgba(46, 204, 113,0.2) 1%, rgba(255,255,255,0) 0),
-                      linear-gradient(to right, rgba(46, 204, 113,0.2) 1%, rgba(255,255,255,0) 0);
-    background-size: 50px 50px;
+    background-image: linear-gradient(to top, rgba(46, 204, 113, 0.2) 1%, rgba(255, 255, 255, 0) 0),
+                      linear-gradient(to right, rgba(46, 204, 113, 0.2) 1%, rgba(255, 255, 255, 0) 0);
+    background-size: calc(5vw + 2vh) calc(5vw + 2vh); /* Adjust calc for better responsiveness */
 }
+
 
 svg, html, body, #app  {
     box-sizing: border-box;
@@ -92,13 +92,39 @@ svg {position: relative;z-index:1;}
 #score {
     position: fixed;
     z-index:0;
-    top: 50%;
+    top: 10%;
     left:50%;
     width: 100%;
     text-align:center;
     transform: translate(-50%, -50%);
-    font-size:20em;
-    color: rgba(46, 204, 113,0.2);
+    font-size:5em;
+    color: rgba(46, 204, 113,0.8);
+    font-family: 'Bungee Outline', cursive;
+}
+
+#timer {
+    position: fixed;
+    z-index:0;
+    top: 20%;
+    left:50%;
+    width: 100%;
+    text-align:center;
+    transform: translate(-50%, -50%);
+    font-size:3em;
+    color: rgba(231, 76, 60,0.8);
+    font-family: 'Bungee Outline', cursive;
+}
+
+#high-score {
+    position: fixed;
+    z-index:0;
+    top: 30%;
+    left:50%;
+    width: 100%;
+    text-align:center;
+    transform: translate(-50%, -50%);
+    font-size:3em;
+    color: rgba(241, 196, 15,0.8);
     font-family: 'Bungee Outline', cursive;
 }
 
@@ -123,6 +149,14 @@ svg {position: relative;z-index:1;}
     top: 50%;
     left:50%;
     transform: translate(-50%, -50%);
+}
+
+#pause-btn {
+    position: fixed;
+    bottom: 10%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 2em;
 }
 
 #launch-screen {
