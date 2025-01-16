@@ -1,5 +1,9 @@
 import { Line } from './Line';
 import { Dot } from './Dot';
+import { score, highScore } from '$lib/stores';
+import { writable } from 'svelte/store';
+
+const scoreStore = writable(0);
 
 export function getDistance(obj1: { cx: number; cy: number }, obj2: { cx: number; cy: number }) {
   return Math.floor(
@@ -34,8 +38,8 @@ export function initializeDOMElements() {
   svg = document.getElementById("svg") as unknown as SVGSVGElement;
   dotMatrix = document.createElementNS("http://www.w3.org/2000/svg", "circle");
   lineMatrix = document.createElementNS("http://www.w3.org/2000/svg", "line");
-  screenW = window.innerWidth;
-  screenH = window.innerHeight;
+  screenW = window.innerWidth * 0.95;
+  screenH = window.innerHeight * 0.95;
   totalDist = document.getElementById("distance");
   app.preline = new Line(0, 0, 200, 200);
   app.preline.setAttr("id", "preline");
@@ -60,15 +64,13 @@ export const app = {
   score: {
     number: 0,
     el: null as HTMLElement | null,
-    update(score: number) {
-      this.number += score;
-      if (this.el) {
-        this.el.textContent = this.number.toString();
-      }
+    update(scoreValue: number) {
+      this.number += scoreValue;
+      score.update(n => n + scoreValue);
     },
     reset() {
       this.number = 0;
-      this.update(0);
+      score.set(0);
     }
   },
   results(points: number | "reset") {
@@ -158,6 +160,7 @@ export const app = {
     if (win) {
       app.level += 4;
       app.results(app.score.number);
+      highScore.update(n => Math.max(n, app.score.number));
     } else {
       app.level = 4;
     }
