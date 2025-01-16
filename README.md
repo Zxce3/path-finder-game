@@ -1,6 +1,13 @@
-# sv
+# Path Finder Game
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+This project is a SvelteKit implementation of the Path Finder game. The original version of the game was created using HTML, CSS, and JavaScript. This implementation leverages the power of SvelteKit to create a more modular and maintainable codebase.
+
+## Features
+
+- **SvelteKit**: Utilizes SvelteKit for building the application.
+- **TypeScript**: Written in TypeScript for type safety.
+- **State Management**: Uses Svelte stores for managing game state.
+- **Animations**: Includes animations for dots and lines to enhance the visual experience.
 
 ## Creating a project
 
@@ -8,21 +15,21 @@ If you're seeing this, you've probably already done this step. Congrats!
 
 ```bash
 # create a new project in the current directory
-npx sv create
+bunx sv create
 
 # create a new project in my-app
-npx sv create my-app
+bunx sv create my-app
 ```
 
 ## Developing
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+Once you've created a project and installed dependencies with `bun install`, start a development server:
 
 ```bash
-npm run dev
+bun run dev
 
 # or start the server and open the app in a new browser tab
-npm run dev -- --open
+bun run dev -- --open
 ```
 
 ## Building
@@ -30,9 +37,13 @@ npm run dev -- --open
 To create a production version of your app:
 
 ```bash
-npm run build
+bun run build
 ```
 
-You can preview the production build with `npm run preview`.
+You can preview the production build with `bun run preview`.
 
 > To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+
+## Credits
+
+This project was inspired by and uses code from [this CodePen](https://codepen.io/blazicke/pen/MEvZRR) by [Blazicke](https://codepen.io/blazicke).
