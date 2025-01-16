@@ -119,8 +119,13 @@ export const app = {
     dots.num = dotsNum;
 
     for (let i = 0; i < dots.num; i++) {
-      const cx = getRandomArbitrary(10, screenW - 10);
-      const cy = getRandomArbitrary(10, screenH - 10);
+      let cx: number, cy: number;
+      let isTooClose;
+      do {
+        cx = getRandomArbitrary(10, screenW - 10);
+        cy = getRandomArbitrary(10, screenH - 10);
+        isTooClose = dots.list.some(dot => getDistance(dot, { cx, cy }) < 50);
+      } while (isTooClose);
 
       dots.list[i] = new Dot(8, cx, cy);
       dots.list[i].setAttr("data-id", "id-" + i);
