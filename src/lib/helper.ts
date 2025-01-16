@@ -2,6 +2,10 @@ import { Line } from './Line';
 import { Dot } from './Dot';
 import { score, highScore } from '$lib/stores';
 import { writable } from 'svelte/store';
+import clickSound from '$lib/sounds/click.mp3';
+import playSound from '$lib/sounds/play.mp3';
+import gameOverSound from '$lib/sounds/gameover.mp3';
+import nextLevelSound from '$lib/sounds/nextlevel.mp3';
 
 const scoreStore = writable(0);
 
@@ -106,6 +110,7 @@ export const app = {
           launchScreenEl.setAttribute("class", "");
         }
         app.start(app.level);
+        app.playSoundEffect(playSound);
         launchScreenBtn.removeEventListener("click", lauch);
       });
     }
@@ -113,6 +118,10 @@ export const app = {
   preline: new Line(0, 0, 200, 200),
   startTimer: () => {},
   resetTimer: () => {},
+  playSoundEffect(sound: string) {
+    const audio = new Audio(sound);
+    audio.play();
+  },
   start(dotsNum: number) {
     this.resetTimer();
     this.startTimer();
@@ -135,6 +144,8 @@ export const app = {
       dots.list[i].update();
       dots.list[i].append();
       dots.left.push(i);
+
+      dots.list[i].el?.addEventListener("click", () => app.playSoundEffect(clickSound));
 
       if (i === dots.start) {
         dots.selected.cx = dots.list[dots.start].cx;
@@ -166,8 +177,10 @@ export const app = {
       app.level += 4;
       app.results(app.score.number);
       highScore.update(n => Math.max(n, app.score.number));
+      app.playSoundEffect(nextLevelSound);
     } else {
       app.level = 4;
+      app.playSoundEffect(gameOverSound);
     }
 
     dots.list = [];

@@ -3,6 +3,10 @@
   import { app, initializeDOMElements } from '$lib/helper';
   import { timer, highScore, score } from '$lib/stores';
   import { derived } from 'svelte/store';
+  import clickSound from '$lib/sounds/click.mp3';
+  import playSound from '$lib/sounds/play.mp3';
+  import gameOverSound from '$lib/sounds/gameover.mp3';
+  import nextLevelSound from '$lib/sounds/nextlevel.mp3';
 
   let interval: number;
 
@@ -19,6 +23,11 @@
     timer.set(0);
   }
 
+  function playSoundEffect(sound: string) {
+    const audio = new Audio(sound);
+    audio.play();
+  }
+
   onMount(() => {
     initializeDOMElements();
     app.launchScreen(
@@ -29,6 +38,11 @@
     );
     app.startTimer = startTimer;
     app.resetTimer = resetTimer;
+
+    const startBtn = document.getElementById("start-btn");
+    if (startBtn) {
+      startBtn.addEventListener("click", () => playSoundEffect(playSound));
+    }
   });
 </script>
 
