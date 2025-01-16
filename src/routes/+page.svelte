@@ -1,21 +1,19 @@
 <script lang="ts">
   import { onMount } from 'svelte';
   import { app, initializeDOMElements } from '$lib/helper';
+  import { timer, highScore, score } from '$lib/stores';
 
-  let timer: number = 0;
   let interval: number;
 
   function startTimer() {
     interval = setInterval(() => {
-      timer++;
-      document.getElementById("timer")!.textContent = timer.toString();
+      timer.update(n => n + 1);
     }, 1000);
   }
 
   function resetTimer() {
     clearInterval(interval);
-    timer = 0;
-    document.getElementById("timer")!.textContent = timer.toString();
+    timer.set(0);
   }
 
   onMount(() => {
@@ -32,8 +30,9 @@
 </script>
 
 <div id="app">
-  <div id="score"></div>
-  <div id="timer">0</div>
+  <div id="score">{$score}</div>
+  <div id="timer">{$timer}</div>
+  <div id="high-score">High Score: {$highScore}</div>
   <svg id="svg"></svg>
   
   <div id="launch-screen" class="is-visible">
