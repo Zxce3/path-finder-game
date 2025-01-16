@@ -2,8 +2,11 @@
   import { onMount } from 'svelte';
   import { app, initializeDOMElements } from '$lib/helper';
   import { timer, highScore, score } from '$lib/stores';
+  import { derived } from 'svelte/store';
 
   let interval: number;
+
+  const pageTitle = derived(score, $score => `Path Finder - Score: ${$score}`);
 
   function startTimer() {
     interval = setInterval(() => {
@@ -28,6 +31,11 @@
     app.resetTimer = resetTimer;
   });
 </script>
+
+<svelte:head>
+  <title>{$pageTitle}</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 width=%2232%22 height=%2232%22 viewport=%220 0 32 32%22 style=%22fill:rgba(241, 196, 15,1.0);%22><circle cx=%2216%22 cy=%2216%22 r=%228%22/></svg>">
+</svelte:head>
 
 <div id="app">
   <div id="score">{$score}</div>
