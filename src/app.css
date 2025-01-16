@@ -227,3 +227,34 @@ svg {position: relative;z-index:1;}
 #app {
     cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewport="0 0 32 32" style="fill:rgba(46, 204, 113,1.0);"><circle cx="16" cy="16" r="8"/></svg>') 16 16, auto;
 }
+
+#about {
+    padding: 20px;
+    color: rgba(241, 196, 15,1.0);
+    font-family: 'Space Mono', monospace;
+    background-color: black;
+    border-radius: 6px;
+    max-width: 800px;
+    margin: 50px auto;
+    text-align: center;
+}
+
+#about h1 {
+    font-family: 'Bungee Outline', cursive;
+    color: rgba(46, 204, 113,1.0);
+    font-size: 3em;
+    margin-bottom: 20px;
+}
+
+#about p {
+    font-size: 1.2em;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
+#about a {
+    cursor: pointer;
+    font-size: 1.2em;
+    color: yellow;
+    line-height: 1.5;
+    margin-bottom: 20px;
+}
