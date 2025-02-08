@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { app, initializeDOMElements } from '$lib/helper';
-	import { timer, highScore, score } from '$lib/stores';
+	import { timer, highScore, score, timeLimit } from '$lib/stores';
 	import { derived } from 'svelte/store';
 	import clickSound from '$lib/sounds/click.mp3';
 	import playSound from '$lib/sounds/play.mp3';
@@ -15,7 +15,16 @@
 
 	function startTimer() {
 		interval = setInterval(() => {
-			timer.update((n) => n + 1);
+			timer.update((n) => {
+				let limit = 0;
+				timeLimit.subscribe(value => limit = value)();
+				if (n >= limit) {
+					resetTimer();
+					app.end(false);
+					return limit;
+				}
+				return n + 1;
+			});
 		}, 1000);
 	}
 
@@ -60,9 +69,11 @@
 </svelte:head>
 
 <div id="app" class="game-container">
-	<div id="score">{$score}</div>
-	<div id="timer">{$timer}</div>
-	<div id="high-score">High Score: {$highScore}</div>
+	<div class="game-stats">
+		<div id="score">{$score}</div>
+		<div id="timer">{$timer}/{$timeLimit}s</div>
+		<div id="high-score">High Score: {$highScore}</div>
+	</div>
 	<svg id="svg"></svg>
 
 	<div id="launch-screen" class="is-visible">
