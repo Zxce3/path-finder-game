@@ -1,6 +1,6 @@
 import { Line } from './Line';
 import { Dot } from './Dot';
-import { score, highScore } from '$lib/stores';
+import { score, highScore, timer, timeLimit } from '$lib/stores';
 import { writable } from 'svelte/store';
 import clickSound from '$lib/sounds/click.mp3';
 import playSound from '$lib/sounds/play.mp3';
@@ -60,11 +60,12 @@ export const dots = {
   start: 0,
   selected: { id: 0, cx: 0, cy: 0 },
   left: [] as number[],
-  preline: {} as Line
+  preline: {} as Line,
+  maxDots: 50 // Add maximum dot limit
 };
 
 export const app = {
-  level: 4,
+  level: 5, // Change initial level to 5 dots
   score: {
     number: 0,
     el: null as HTMLElement | null,
@@ -97,9 +98,12 @@ export const app = {
       launchScreenTitle.textContent = title;
     }
 
+    let currentTimeLimit;
+    timeLimit.subscribe(value => currentTimeLimit = value)();
+
     const launchScreenDescription = document.getElementById("launch-screen__description");
     if (launchScreenDescription) {
-      launchScreenDescription.textContent = description;
+      launchScreenDescription.textContent = description + ` Time limit: ${currentTimeLimit} seconds.`;
     }
 
     const launchScreenBtn = document.getElementById("start-btn");
@@ -129,6 +133,18 @@ export const app = {
   start(dotsNum: number) {
     this.resetTimer();
     this.startTimer();
+    
+    // Subscribe to timer to check for time limit
+    const unsubscribe = timer.subscribe(time => {
+      let limit;
+      timeLimit.subscribe(value => limit = value)();
+      
+      if (limit !== undefined && time >= limit) {
+        unsubscribe();
+        this.end(false); // Game over when time runs out
+      }
+    });
+
     dots.num = dotsNum;
 
     for (let i = 0; i < dots.num; i++) {
@@ -178,12 +194,15 @@ export const app = {
   end(win: boolean) {
     this.resetTimer();
     if (win) {
-      app.level += 4;
+      // Increase level by 3 dots and add 5 seconds to time limit
+      this.level = Math.min(this.level + 3, dots.maxDots);
+      timeLimit.update(t => t + 5);
       app.results(app.score.number);
       highScore.update(n => Math.max(n, app.score.number));
       app.playSoundEffect(nextLevelSound);
     } else {
-      app.level = 4;
+      this.level = 5;
+      timeLimit.set(30); // Reset time limit
       app.playSoundEffect(gameOverSound);
     }
 
@@ -200,7 +219,7 @@ export const app = {
       app.launchScreen(
         app.score.number,
         "Well done!",
-        `Your score is: ${finalScore}. The next level will be harder.`,
+        `Your score is: ${finalScore}. Next level: ${this.level} dots`,
         "PLAY NEXT LEVEL"
       );
     } else {
