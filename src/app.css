@@ -26,7 +26,13 @@ svg, html, body, #app  {
     width:100%;
     padding:0;
     margin:0;
-    overflow:hidden;
+}
+
+/* Add game-specific container */
+.game-container {
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
 }
 
 svg {position: relative;z-index:1;}
@@ -237,6 +243,8 @@ svg {position: relative;z-index:1;}
     max-width: 800px;
     margin: 50px auto;
     text-align: center;
+    min-height: 100vh;
+    overflow-y: auto;
 }
 
 #about h1 {

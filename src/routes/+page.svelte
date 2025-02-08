@@ -59,7 +59,7 @@
 	/>
 </svelte:head>
 
-<div id="app">
+<div id="app" class="game-container">
 	<div id="score">{$score}</div>
 	<div id="timer">{$timer}</div>
 	<div id="high-score">High Score: {$highScore}</div>
