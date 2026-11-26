@@ -298,6 +298,14 @@ button {
 		gap: 4px 12px;
 	}
 
+	.stats {
+		gap: 12px;
+	}
+
+	.icon-btn {
+		padding: 0 8px;
+	}
+
 	.stat {
 		display: flex;
 		align-items: baseline;
@@ -343,26 +351,138 @@ button {
 
 /* About page */
 .about {
-	max-width: 800px;
+	display: flex;
+	flex-direction: column;
+	gap: 16px;
+	max-width: 640px;
 	margin: 0 auto;
-	padding: 24px 16px 48px;
-	text-align: center;
+	padding: max(12px, env(safe-area-inset-top)) max(16px, env(safe-area-inset-right))
+		max(32px, env(safe-area-inset-bottom)) max(16px, env(safe-area-inset-left));
 	line-height: 1.6;
-	color: var(--yellow);
-	background: black;
-	min-height: 100dvh;
-	overflow-wrap: anywhere;
+}
+
+.about header {
+	text-align: center;
+}
+
+.about h1,
+.about h2 {
+	font-family: var(--display);
+	font-weight: normal;
 }
 
 .about h1 {
-	font-family: var(--display);
-	font-weight: normal;
-	font-size: clamp(1.6rem, 8vw, 3rem);
+	margin: 0;
+	font-size: clamp(1.8rem, 9vw, 3.5rem);
 	color: var(--green);
 }
 
+.about h2 {
+	margin: 0 0 8px;
+	font-size: 1.1rem;
+	color: var(--yellow);
+}
+
 .about a {
-	color: yellow;
+	color: var(--yellow);
+}
+
+.about a.about__back {
+	display: inline-block;
+	padding: 10px 0;
+}
+
+.about__path {
+	width: min(100%, 260px);
+}
+
+.about__path path {
+	fill: none;
+	stroke: var(--green);
+	stroke-width: 2;
+	stroke-dasharray: 2 8;
+}
+
+.about__path circle {
+	stroke: var(--green);
+	stroke-width: 3;
+}
+
+.about__path .done {
+	fill: black;
+}
+
+.about__path .here {
+	fill: var(--green);
+}
+
+.about__path .next {
+	fill: var(--yellow);
+	stroke: black;
+}
+
+.card {
+	padding: 16px 20px;
+	background: rgba(0, 0, 0, 0.88);
+	border: 1px solid rgba(46, 204, 113, 0.4);
+	border-radius: 8px;
+}
+
+.card p {
+	margin: 8px 0 0;
+}
+
+.card ol {
+	margin: 0;
+	padding-left: 1.4em;
+}
+
+.card dl {
+	display: grid;
+	grid-template-columns: max-content 1fr;
+	gap: 8px 16px;
+	margin: 0;
+}
+
+.card dt {
+	color: var(--green);
+}
+
+.card dd {
+	margin: 0;
+}
+
+.card kbd {
+	padding: 0 6px;
+	border: 1px solid #666;
+	border-radius: 4px;
+}
+
+.about a.btn {
+	align-self: center;
+	display: inline-flex;
+	align-items: center;
+	text-decoration: none;
+}
+
+.about a.btn:hover {
+	color: black;
+}
+
+.about footer {
+	text-align: center;
+	font-size: 0.8rem;
+}
+
+@media (max-width: 380px) {
+	.card dl {
+		grid-template-columns: 1fr;
+		gap: 0;
+	}
+
+	.card dd {
+		margin-bottom: 8px;
+	}
 }
 
 @keyframes dot-reveal {
