@@ -1,5 +1,5 @@
 <script lang="ts">
-	// You can add any necessary imports here
+	import { base } from '$app/paths';
 	let currentYear: number = new Date().getFullYear();
 </script>
 
@@ -8,7 +8,7 @@
 </svelte:head>
 
 <div id="about">
-	<a href="/">Go Back</a>
+	<a href="{base}/">Go Back</a>
 	<h1>About Path Finder</h1>
 	<p>
 		Path Finder is a fun and challenging game where you need to find the nearest yellow dot as

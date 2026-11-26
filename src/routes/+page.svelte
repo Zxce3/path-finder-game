@@ -8,6 +8,7 @@
 	import gameOverSound from '$lib/sounds/gameover.mp3';
 	import nextLevelSound from '$lib/sounds/nextlevel.mp3';
 	import { goto } from '$app/navigation';
+	import { base } from '$app/paths';
 
 	let interval: number;
 
@@ -39,7 +40,7 @@
 	}
 
 	function handleAboutButtonClick() {
-		goto('/about');
+		goto(`${base}/about/`);
 	}
 
 	onMount(() => {
