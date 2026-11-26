@@ -2,24 +2,16 @@
 
 This project is a SvelteKit implementation of the Path Finder game. The original version of the game was created using HTML, CSS, and JavaScript. This implementation leverages the power of SvelteKit to create a more modular and maintainable codebase.
 
+## How to play
+
+Start at the green dot and keep tapping the nearest yellow dot until all are visited. Dots within 3px of each other in distance both count. Each level adds 3 dots (up to 50) and 5 seconds. `P` or `Esc` pauses.
+
 ## Features
 
 - **SvelteKit**: Utilizes SvelteKit for building the application.
 - **TypeScript**: Written in TypeScript for type safety.
-- **State Management**: Uses Svelte stores for managing game state.
+- **State Management**: Uses Svelte 5 runes; game rules live in `src/lib/game.ts` (test with `bun test src`).
 - **Animations**: Includes animations for dots and lines to enhance the visual experience.
-
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-bunx sv create
-
-# create a new project in my-app
-bunx sv create my-app
-```
 
 ## Developing
 

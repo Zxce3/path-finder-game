@@ -7,12 +7,12 @@
 	<title>About Path Finder</title>
 </svelte:head>
 
-<div id="about">
-	<a href="/">Go Back</a>
+<main class="about">
+	<a href="/">&larr; Back to game</a>
 	<h1>About Path Finder</h1>
 	<p>
-		Path Finder is a fun and challenging game where you need to find the nearest yellow dot as
-		quickly as possible. The game gets progressively harder with each level, testing your speed and
+		Path Finder is a fun and challenging game where you need to keep tapping the nearest yellow dot
+		before time runs out. The game gets progressively harder with each level, testing your speed and
 		accuracy.
 	</p>
 	<p>
@@ -23,12 +23,27 @@
 	<p>
 		Credits: This project was inspired by and uses code from <a
 			href="https://codepen.io/blazicke/pen/MEvZRR"
-			target="_blank">this CodePen</a
+			target="_blank"
+			rel="noopener noreferrer">this CodePen</a
 		>
-		by <a href="https://codepen.io/blazicke" target="_blank">Blazicke</a>.
+		by <a href="https://codepen.io/blazicke" target="_blank" rel="noopener noreferrer">Blazicke</a>.
 	</p>
-	<p>Developed by <a href="https://github.com/zxce3" target="_blank">zxce3</a>.</p>
-	<p>The source code for this project can be accessed at <a href="https://github.com/Zxce3/path-finder-game/" target="_blank">https://github.com/Zxce3/path-finder-game/</a>.</p>
-	<p>Proudly hosted on <a href="https://www.netlify.com/" target="_blank">Netlify</a>.</p>
+	<p>
+		Developed by <a href="https://github.com/zxce3" target="_blank" rel="noopener noreferrer"
+			>zxce3</a
+		>.
+	</p>
+	<p>
+		The source code for this project can be accessed at <a
+			href="https://github.com/Zxce3/path-finder-game/"
+			target="_blank"
+			rel="noopener noreferrer">https://github.com/Zxce3/path-finder-game/</a
+		>.
+	</p>
+	<p>
+		Proudly hosted on <a href="https://www.netlify.com/" target="_blank" rel="noopener noreferrer"
+			>Netlify</a
+		>.
+	</p>
 	<p>&copy; {currentYear} Path Finder. All rights reserved.</p>
-</div>
+</main>
