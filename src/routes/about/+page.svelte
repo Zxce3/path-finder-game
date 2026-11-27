@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { base } from '$app/paths';
 	const currentYear = new Date().getFullYear();
 	const source = 'https://github.com/Zxce3/path-finder-game';
 </script>
@@ -9,7 +10,7 @@
 
 <main class="about">
 	<nav>
-		<a class="about__back" href="/">&larr; Back to game</a>
+		<a class="about__back" href={`${base}/`}>&larr; Back to game</a>
 	</nav>
 
 	<header>
@@ -66,7 +67,7 @@
 		</p>
 	</section>
 
-	<a class="btn" href="/">Play now</a>
+	<a class="btn" href={`${base}/`}>Play now</a>
 
 	<footer>&copy; {currentYear} Path Finder. All rights reserved.</footer>
 </main>

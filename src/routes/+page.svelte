@@ -3,6 +3,7 @@
 	import { levelConfig, nearest, placeDots, type Point } from '$lib/game';
 	import { playSound } from '$lib/sound';
 	import { load, save } from '$lib/storage';
+	import { base } from '$app/paths';
 
 	type Phase = 'ready' | 'playing' | 'paused' | 'won' | 'lost';
 
@@ -283,7 +284,7 @@
 					<p>Final score: {score}.{newBest ? ' New best!' : ''}</p>
 					<button class="btn" bind:this={primaryButton} onclick={startLevel}>Play again</button>
 				{/if}
-				<a class="link" href="/about">About</a>
+				<a class="link" href={`${base}/about`}>About</a>
 			</section>
 		</div>
 	{/if}
